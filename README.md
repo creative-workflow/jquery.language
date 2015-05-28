@@ -1,4 +1,4 @@
-# jquery.language
+# jquery.language [![Build Status](https://travis-ci.org/creative-workflow/jquery.language.svg?branch=master)](https://travis-ci.org/creative-workflow/jquery.language)
 
 This plugin helps managing browser languages. It looks for a url param or the navigator language and stores the language in a cookie.
 

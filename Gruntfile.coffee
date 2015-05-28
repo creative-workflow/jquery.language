@@ -29,7 +29,6 @@ module.exports = (grunt) ->
         src: 'dist/jquery.language.js'
         options:
           specs: 'spec/*spec.js'
-          helpers: 'spec/*helper.js'
           vendor: [
             "bower_components/jquery/dist/jquery.min.js"
             "bower_components/jquery.cookie/jquery.cookie.js"

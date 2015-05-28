@@ -12,9 +12,6 @@ describe 'jquery.language', ->
       ]
 
   describe 'language detection', ->
-    it 'fallsback to "de"', ->
-      expect($.language()).toEqual 'de'
-
     it 'recognizes url param "en"', ->
       spyOn($, "url").and.returnValue 'en'
       $.language.autodetectLanguageAndSet()

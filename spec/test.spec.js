@@ -13,7 +13,7 @@
     });
     describe('language detection', function() {
       it('recognizes url param "en"', function() {
-        spyOn($, "url").and.returnValue('en');
+        spyOn(jQuery, "url").and.returnValue('en');
         $.language.autodetectLanguageAndSet();
         return expect($.language()).toEqual('en');
       });

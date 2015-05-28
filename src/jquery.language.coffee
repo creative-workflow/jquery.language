@@ -1,6 +1,7 @@
 root = exports ? this
 
 root.language = do ->
+  $ = jQuery
   l = (options) ->
     if arguments.length == 0
       l.config()

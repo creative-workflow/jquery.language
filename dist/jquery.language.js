@@ -4,7 +4,8 @@
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   root.language = (function() {
-    var activeLanguage, initialized, l;
+    var $, activeLanguage, initialized, l;
+    $ = jQuery;
     l = function(options) {
       if (arguments.length === 0) {
         l.config();

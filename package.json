@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "jquery": ">=1.8",
-    "js-url": ">=1.8.6",
     "jquery.cookie": ">=1.4.1"
   },
   "scripts": {

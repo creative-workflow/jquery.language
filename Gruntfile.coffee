@@ -59,3 +59,9 @@ module.exports = (grunt) ->
     'coffee'
     'jasmine'
   ]
+
+  grunt.registerTask 'ci', [
+    'coffeelint'
+    'coffee'
+    'jasmine'
+  ]

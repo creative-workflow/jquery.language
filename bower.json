@@ -1,0 +1,33 @@
+{
+  "name": "jquery.language",
+  "version": "1.0.0",
+  "homepage": "https://github.com/creative-workflow/jquery.language",
+  "authors": [
+    "Tom Hanoldt <monotom@gmail.com>"
+  ],
+  "description": "This plugin helps managing browser languages. It looks for a url param or the navigator language and stores the language in a cookie.",
+  "main": "src/jquery.language.coffee",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "jquery",
+    "language",
+    "cookie",
+    "url",
+    "detection",
+    "browser"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "spec"
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.4",
+    "js-url": "~1.8.6",
+    "jquery.cookie": "~1.4.1",
+    "jasmine-jquery": "~2.1.0"
+  }
+}

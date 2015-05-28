@@ -1,8 +1,8 @@
 {
   "name": "jquery.language",
   "version": "1.0.0",
-  "description": "A simple, lightweight jQuery plugin handling languages",
-  "main": "src/jquery.language.js",
+  "description": "A simple, lightweight jQuery plugin for handling languages",
+  "main": "dist/jquery.language.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/creative-workflow/jquery.language.git"
@@ -20,7 +20,15 @@
     "grunt-contrib-uglify": "^0.9.1",
     "grunt-contrib-watch": "^0.6.1"
   },
+  "dependencies": {
+    "jquery": ">=1.8",
+    "js-url": ">=1.8.6",
+    "jquery.cookie": ">=1.4.1"
+  },
   "scripts": {
     "test": "grunt test"
-  }
+  },
+  "keywords": [
+    "jquery-plugin", "ecosystem:jquery", "browser", "language", "browser", "detection", "translation"
+  ]
 }

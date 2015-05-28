@@ -12,9 +12,6 @@
       });
     });
     describe('language detection', function() {
-      it('fallsback to "de"', function() {
-        return expect($.language()).toEqual('de');
-      });
       it('recognizes url param "en"', function() {
         spyOn($, "url").and.returnValue('en');
         $.language.autodetectLanguageAndSet();

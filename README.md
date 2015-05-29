@@ -1,6 +1,6 @@
 # jquery.language [![Build Status](https://travis-ci.org/creative-workflow/jquery.language.svg?branch=master)](https://travis-ci.org/creative-workflow/jquery.language) [![Code Climate](https://codeclimate.com/github/creative-workflow/jquery.language/badges/gpa.svg)](https://codeclimate.com/github/creative-workflow/jquery.language)
 
-This plugin helps managing browser languages. It looks for a url param or the navigator language and stores the language in a cookie.
+This plugin helps managing browser languages. It looks for an url param or the navigator language and stores the language in a cookie.
 
 ## Usage
 ### javascript
@@ -59,7 +59,7 @@ This plugin helps managing browser languages. It looks for a url param or the na
 ## Functions
 ### $.language(configuration|language|null)
 Initialize the plugin.
-  * with an configuration object.
+  * with a configuration object.
   * or with a language string
   * If no parameter is given it returns the actual language.
 

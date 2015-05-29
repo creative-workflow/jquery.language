@@ -14,12 +14,13 @@
         return activeLanguage;
       }
       if (typeof arguments[0] === 'string') {
-        return l.config({
+        l.config({
           'active': arguments[0]
         });
       } else {
-        return l.config(arguments[0]);
+        l.config(arguments[0]);
       }
+      return this;
     };
     l.options = {
       active: 'auto',
@@ -34,7 +35,8 @@
       }
       l.options = $.extend(l.options, options);
       l.autodetectLanguageAndSet();
-      return initialized = true;
+      initialized = true;
+      return this;
     };
     l.autodetectLanguageAndSet = function() {
       var possibleLanguage;
@@ -43,7 +45,8 @@
       } else {
         possibleLanguage = l.options.active;
       }
-      return l.setLanguage(possibleLanguage);
+      l.setLanguage(possibleLanguage);
+      return this;
     };
     l.autodetectLanguage = function() {
       return $.url("?" + l.options.urlParam) || $.cookie(l.options.cookieName) || navigator.language || navigator.userLanguage || l.options.fallback;
@@ -79,6 +82,9 @@
     };
     l.isValid = function(language) {
       return l.options.available.indexOf(language) !== -1;
+    };
+    l.fallback = function() {
+      return l.options.fallback;
     };
     l.normalize = function(language) {
       if (!language || typeof language !== 'string') {

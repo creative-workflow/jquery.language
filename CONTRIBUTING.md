@@ -35,9 +35,6 @@ You should see a green message in the console:
 
     Done, without errors.
 
-###Tests
-TODO
-
 ###Automatic build
 You can build automatically after a file change using the following command:
 

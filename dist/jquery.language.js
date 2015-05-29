@@ -6,22 +6,21 @@
   root.language = (function() {
     var $, activeLanguage, initialized, l;
     $ = jQuery;
+    activeLanguage = null;
+    initialized = false;
     l = function(options) {
       if (arguments.length === 0) {
         l.config();
         return activeLanguage;
       }
       if (typeof arguments[0] === 'string') {
-        l.config({
+        return l.config({
           'active': arguments[0]
         });
       } else {
-        l.config(arguments[0]);
+        return l.config(arguments[0]);
       }
-      return this;
     };
-    activeLanguage = null;
-    initialized = false;
     l.options = {
       active: 'auto',
       fallback: 'en',
@@ -35,8 +34,7 @@
       }
       l.options = $.extend(l.options, options);
       l.autodetectLanguageAndSet();
-      initialized = true;
-      return this;
+      return initialized = true;
     };
     l.autodetectLanguageAndSet = function() {
       var possibleLanguage;
@@ -45,11 +43,7 @@
       } else {
         possibleLanguage = l.options.active;
       }
-      l.setLanguage(possibleLanguage);
-      return this;
-    };
-    l.fallback = function() {
-      return l.options.fallback;
+      return l.setLanguage(possibleLanguage);
     };
     l.autodetectLanguage = function() {
       return $.url("?" + l.options.urlParam) || $.cookie(l.options.cookieName) || navigator.language || navigator.userLanguage || l.options.fallback;

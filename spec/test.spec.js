@@ -53,12 +53,10 @@
       });
       return it('can be reconfigured', function() {
         expect($.language.config().fallback).toEqual('de');
-        expect($.language.fallback()).toEqual('de');
         $.language({
           fallback: 'en'
         });
-        expect($.language.config().fallback).toEqual('en');
-        return expect($.language.fallback()).toEqual('en');
+        return expect($.language.config().fallback).toEqual('en');
       });
     });
     return describe('events are triggerd', function() {

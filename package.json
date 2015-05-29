@@ -28,6 +28,6 @@
     "test": "grunt test"
   },
   "keywords": [
-    "jquery-plugin", "ecosystem:jquery", "browser", "language", "browser", "detection", "translation"
+    "jquery-plugin", "ecosystem:jquery", "language", "browser", "detection", "translation"
   ]
 }

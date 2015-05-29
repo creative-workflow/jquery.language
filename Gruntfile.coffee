@@ -15,13 +15,13 @@ module.exports = (grunt) ->
       options:
         banner: '/*! <%= pkg.name %> v<%= pkg.version %> | <%= pkg.license %> */\n'
       build:
-        files: 'dist/jquery.language-<%= pkg.version %>.min.js': 'dist/jquery.language.js'
+        files: 'dist/jquery.language.min.js': 'dist/jquery.language.js'
     compress:
       main:
         options:
           mode: 'gzip'
         files: [ {
-          src: [ 'dist/jquery.language.js' ]
+          src: [ 'dist/jquery.language.min.js' ]
           dest: 'dist/jquery.language.js.gz'
         }]
     jasmine:
@@ -54,13 +54,6 @@ module.exports = (grunt) ->
   ]
 
   grunt.registerTask 'test', [
-    'coffeelint'
-    'coffee'
-    'jasmine'
-  ]
-
-  grunt.registerTask 'ci', [
-    'coffeelint'
     'coffee'
     'jasmine'
   ]

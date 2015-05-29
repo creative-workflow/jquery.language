@@ -54,13 +54,11 @@ describe 'jquery.language', ->
 
     it 'can be reconfigured', ->
       expect($.language.config().fallback).toEqual 'de'
-      expect($.language.fallback()).toEqual 'de'
 
       $.language
         fallback: 'en'
 
       expect($.language.config().fallback).toEqual 'en'
-      expect($.language.fallback()).toEqual 'en'
 
   describe 'events are triggerd', ->
     it 'on valid language change', ->

@@ -2,6 +2,9 @@ root = exports ? this
 
 root.language = do ->
   $ = jQuery
+  activeLanguage = null
+  initialized    = false
+
   l = (options) ->
     if arguments.length == 0
       l.config()
@@ -9,14 +12,8 @@ root.language = do ->
 
     if typeof arguments[0] == 'string'
       l.config 'active': arguments[0]
-
     else
       l.config arguments[0]
-
-    this
-
-  activeLanguage = null
-  initialized    = false
 
   l.options =
     active: 'auto'
@@ -24,20 +21,13 @@ root.language = do ->
     available: [ 'en' ]
     urlParam: 'language'
     cookieName: 'language'
-    #events: 'language.invalid' -> {invalid: language, active: lang}
-    #		     'language.change', {old: old, active: lang} -> lang valid switched
 
   l.config = (options) ->
-    #no args given and l.options calculated -> return l.options
     return l.options if !options and initialized
 
     l.options = $.extend(l.options, options)
-
     l.autodetectLanguageAndSet()
-
     initialized = true
-
-    this
 
   l.autodetectLanguageAndSet = ->
     if l.options.active == 'auto'
@@ -46,11 +36,6 @@ root.language = do ->
       possibleLanguage = l.options.active
 
     l.setLanguage possibleLanguage
-
-    this
-
-  l.fallback = ->
-    l.options.fallback
 
   l.autodetectLanguage = ->
     $.url("?#{l.options.urlParam}") || $.cookie(l.options.cookieName) ||
@@ -74,21 +59,17 @@ root.language = do ->
     activeLanguage = possibleLanguage
 
     $.cookie(l.options.cookieName, activeLanguage)
-
     $('body').trigger 'language.change', [{
       active: activeLanguage
       old: oldLanguage
     }]
-
     return activeLanguage
 
   l.isValid = (language) ->
     l.options.available.indexOf(language) != -1
 
   l.normalize = (language) ->
-    if !language or typeof language != 'string'
-      return null
-
+    return null if !language or typeof language != 'string'
     return language.trim().substr(0, 2).toLowerCase()
 
   return l

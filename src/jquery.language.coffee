@@ -15,6 +15,8 @@ root.language = do ->
     else
       l.config arguments[0]
 
+    this
+
   l.options =
     active: 'auto'
     fallback: 'en'
@@ -28,6 +30,7 @@ root.language = do ->
     l.options = $.extend(l.options, options)
     l.autodetectLanguageAndSet()
     initialized = true
+    this
 
   l.autodetectLanguageAndSet = ->
     if l.options.active == 'auto'
@@ -36,6 +39,7 @@ root.language = do ->
       possibleLanguage = l.options.active
 
     l.setLanguage possibleLanguage
+    this
 
   l.autodetectLanguage = ->
     $.url("?#{l.options.urlParam}") || $.cookie(l.options.cookieName) ||
@@ -63,14 +67,17 @@ root.language = do ->
       active: activeLanguage
       old: oldLanguage
     }]
-    return activeLanguage
+    activeLanguage
 
   l.isValid = (language) ->
     l.options.available.indexOf(language) != -1
 
+  l.fallback = () ->
+    l.options.fallback
+
   l.normalize = (language) ->
     return null if !language or typeof language != 'string'
-    return language.trim().substr(0, 2).toLowerCase()
+    language.trim().substr(0, 2).toLowerCase()
 
   return l
 

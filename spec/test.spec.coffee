@@ -14,22 +14,22 @@ describe 'jquery.language', ->
   describe 'language detection', ->
     it 'recognizes url param "en"', ->
       spyOn(jQuery, "url").and.returnValue 'en'
-      $.language.autodetectLanguageAndSet()
+      $.language._autodetectLanguageAndSet()
       expect($.language()).toEqual 'en'
 
     it 'recognizes url param "de"', ->
       spyOn($, "url").and.returnValue 'de'
-      $.language.autodetectLanguageAndSet()
+      $.language._autodetectLanguageAndSet()
       expect($.language()).toEqual 'de'
 
     it 'recognizes cookie value "en"', ->
       $.cookie('lang', 'en')
-      $.language.autodetectLanguageAndSet()
+      $.language._autodetectLanguageAndSet()
       expect($.language()).toEqual 'en'
 
     it 'recognizes cookie value "de"', ->
       $.cookie('lang', 'de')
-      $.language.autodetectLanguageAndSet()
+      $.language._autodetectLanguageAndSet()
       expect($.language()).toEqual 'de'
 
     it 'ignores invalid language', ->

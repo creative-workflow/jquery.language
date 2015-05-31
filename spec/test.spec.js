@@ -14,22 +14,22 @@
     describe('language detection', function() {
       it('recognizes url param "en"', function() {
         spyOn(jQuery, "url").and.returnValue('en');
-        $.language.autodetectLanguageAndSet();
+        $.language._autodetectLanguageAndSet();
         return expect($.language()).toEqual('en');
       });
       it('recognizes url param "de"', function() {
         spyOn($, "url").and.returnValue('de');
-        $.language.autodetectLanguageAndSet();
+        $.language._autodetectLanguageAndSet();
         return expect($.language()).toEqual('de');
       });
       it('recognizes cookie value "en"', function() {
         $.cookie('lang', 'en');
-        $.language.autodetectLanguageAndSet();
+        $.language._autodetectLanguageAndSet();
         return expect($.language()).toEqual('en');
       });
       it('recognizes cookie value "de"', function() {
         $.cookie('lang', 'de');
-        $.language.autodetectLanguageAndSet();
+        $.language._autodetectLanguageAndSet();
         return expect($.language()).toEqual('de');
       });
       return it('ignores invalid language', function() {

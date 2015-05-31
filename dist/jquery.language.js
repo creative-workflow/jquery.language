@@ -1,104 +1,127 @@
 (function() {
-  var root;
+  var $, instance, root,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
-  root.language = (function() {
-    var $, activeLanguage, initialized, l;
-    $ = jQuery;
-    activeLanguage = null;
-    initialized = false;
-    l = function(options) {
-      if (arguments.length === 0) {
-        l.config();
-        return activeLanguage;
-      }
-      if (typeof arguments[0] === 'string') {
-        l.config({
-          'active': arguments[0]
-        });
-      } else {
-        l.config(arguments[0]);
-      }
-      return this;
-    };
-    l.options = {
+  root.JQueryLanguage = (function() {
+    JQueryLanguage.options = {
       active: 'auto',
       fallback: 'en',
       available: ['en'],
       urlParam: 'language',
       cookieName: 'language'
     };
-    l.config = function(options) {
-      if (!options && initialized) {
-        return l.options;
+
+    function JQueryLanguage(options) {
+      this.fallback = bind(this.fallback, this);
+      this.isValid = bind(this.isValid, this);
+      this.setLanguage = bind(this.setLanguage, this);
+      this.autodetectLanguage = bind(this.autodetectLanguage, this);
+      this._autodetectLanguageAndSet = bind(this._autodetectLanguageAndSet, this);
+      this.language = bind(this.language, this);
+      this.config = bind(this.config, this);
+      this._activeLanguage = null;
+      this._initialized = false;
+      this.config(jQuery.extend(options, this.options));
+    }
+
+    JQueryLanguage.prototype.config = function(options) {
+      if (!options && this._initialized) {
+        return this.options;
       }
-      l.options = $.extend(l.options, options);
-      l.autodetectLanguageAndSet();
-      initialized = true;
+      this.options = jQuery.extend(this.options, options);
+      this._autodetectLanguageAndSet();
+      this._initialized = true;
       return this;
     };
-    l.autodetectLanguageAndSet = function() {
+
+    JQueryLanguage.prototype.language = function() {
+      return this._activeLanguage;
+    };
+
+    JQueryLanguage.prototype._autodetectLanguageAndSet = function() {
       var possibleLanguage;
-      if (l.options.active === 'auto') {
-        possibleLanguage = l.autodetectLanguage();
+      if (this.options.active === 'auto') {
+        possibleLanguage = this.autodetectLanguage();
       } else {
-        possibleLanguage = l.options.active;
+        possibleLanguage = this.options.active;
       }
-      l.setLanguage(possibleLanguage);
+      this.setLanguage(possibleLanguage);
       return this;
     };
-    l.autodetectLanguage = function() {
-      return $.url("?" + l.options.urlParam) || $.cookie(l.options.cookieName) || navigator.language || navigator.userLanguage || l.options.fallback;
+
+    JQueryLanguage.prototype.autodetectLanguage = function() {
+      return jQuery.url("?" + this.options.urlParam) || jQuery.cookie(this.options.cookieName) || navigator.language || navigator.userLanguage || this.options.fallback;
     };
-    l.setLanguage = function(possibleLanguage) {
+
+    JQueryLanguage.prototype.setLanguage = function(possibleLanguage) {
       var oldLanguage;
-      possibleLanguage = l.normalize(possibleLanguage);
-      if (activeLanguage === possibleLanguage) {
-        return activeLanguage;
+      possibleLanguage = this.normalize(possibleLanguage);
+      if (this._activeLanguage === possibleLanguage) {
+        return;
       }
-      if (!l.isValid(possibleLanguage)) {
-        $('body').trigger('language.invalid', [
+      if (!this.isValid(possibleLanguage)) {
+        jQuery('body').trigger('language.invalid', [
           {
             invalid: possibleLanguage,
-            active: activeLanguage
+            active: this._activeLanguage
           }
         ]);
-        if (initialized) {
-          return activeLanguage;
+        if (this._initialized) {
+          return;
         }
-        possibleLanguage = l.options.fallback;
+        possibleLanguage = this.options.fallback;
       }
-      oldLanguage = activeLanguage;
-      activeLanguage = possibleLanguage;
-      $.cookie(l.options.cookieName, activeLanguage);
-      $('body').trigger('language.change', [
+      oldLanguage = this._activeLanguage;
+      this._activeLanguage = possibleLanguage;
+      jQuery.cookie(this.options.cookieName, this._activeLanguage);
+      return jQuery('body').trigger('language.change', [
         {
-          active: activeLanguage,
+          active: this._activeLanguage,
           old: oldLanguage
         }
       ]);
-      return activeLanguage;
     };
-    l.isValid = function(language) {
-      return l.options.available.indexOf(language) !== -1;
+
+    JQueryLanguage.prototype.isValid = function(language) {
+      return this.options.available.indexOf(language) !== -1;
     };
-    l.fallback = function() {
-      return l.options.fallback;
+
+    JQueryLanguage.prototype.fallback = function() {
+      return this.options.fallback;
     };
-    l.normalize = function(language) {
+
+    JQueryLanguage.prototype.normalize = function(language) {
       if (!language || typeof language !== 'string') {
         return null;
       }
       return language.trim().substr(0, 2).toLowerCase();
     };
-    return l;
+
+    return JQueryLanguage;
+
   })();
 
   if (typeof jQuery !== 'undefined') {
-    jQuery.extend({
-      language: root.language
+    instance = new JQueryLanguage();
+    $ = jQuery;
+    $.extend({
+      language: function() {
+        if (!arguments.length) {
+          return instance.language();
+        }
+        if (typeof arguments[0] === 'string') {
+          return instance.config({
+            'active': arguments[0]
+          });
+        } else {
+          return instance.config(arguments[0]);
+        }
+      }
     });
+    $.extend($.language, instance);
+    $.language.instance = instance;
   }
 
 }).call(this);

@@ -8,10 +8,10 @@ class root.JQueryLanguage
     urlParam: 'language'
     cookieName: 'language'
 
-  constructor: (options) ->
+  constructor: (@options) ->
     @_activeLanguage = null
     @_initialized    = false
-    @config jQuery.extend(options, @options)
+    @config jQuery.extend(@options, @constructor.options)
 
   config: (options) =>
     return @options if !options && @_initialized

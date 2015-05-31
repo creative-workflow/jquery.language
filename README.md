@@ -14,7 +14,7 @@ This plugin helps managing browser languages. It looks for an url param or the n
 
     $.language('de') //sets the language
 
-It also exposes the class `JqueryLanguage` for manual instantiating.
+It also exposes the class `JQueryLanguage` for manual instantiating.
 
 ### coffee script
     $.language
@@ -29,7 +29,7 @@ It also exposes the class `JqueryLanguage` for manual instantiating.
 
     $.language 'de' #sets the language
 
-It also exposes the class `JqueryLanguage` for manual instantiating and extending.
+It also exposes the class `JQueryLanguage` for manual instantiating and extending.
 
 ### Parameter
 #### active

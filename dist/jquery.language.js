@@ -13,7 +13,8 @@
       cookieName: 'language'
     };
 
-    function JQueryLanguage(options) {
+    function JQueryLanguage(options1) {
+      this.options = options1;
       this.fallback = bind(this.fallback, this);
       this.isValid = bind(this.isValid, this);
       this.setLanguage = bind(this.setLanguage, this);
@@ -23,7 +24,7 @@
       this.config = bind(this.config, this);
       this._activeLanguage = null;
       this._initialized = false;
-      this.config(jQuery.extend(options, this.options));
+      this.config(jQuery.extend(this.options, this.constructor.options));
     }
 
     JQueryLanguage.prototype.config = function(options) {

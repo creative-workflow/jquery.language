@@ -35,7 +35,7 @@ class root.JQueryLanguage
 
   autodetectLanguage: =>
     jQuery.url("?#{@options.urlParam}") ||
-    jQuery.cookie(@options.cookieName) ||
+    Cookies.get(@options.cookieName) ||
     navigator.language || navigator.userLanguage ||
     @options.fallback
 
@@ -56,7 +56,7 @@ class root.JQueryLanguage
     oldLanguage    = @_activeLanguage
     @_activeLanguage = possibleLanguage
 
-    jQuery.cookie(@options.cookieName, @_activeLanguage)
+    Cookies.set(@options.cookieName, @_activeLanguage)
     jQuery('body').trigger 'language.change', [{
       active: @_activeLanguage
       old: oldLanguage

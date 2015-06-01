@@ -30,6 +30,6 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "js-url": "~1.8.6",
-    "jquery.cookie": "~1.4.1"
+    "js-cookie": "~1.5.1"
   }
 }

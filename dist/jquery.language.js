@@ -53,7 +53,7 @@
     };
 
     JQueryLanguage.prototype.autodetectLanguage = function() {
-      return jQuery.url("?" + this.options.urlParam) || jQuery.cookie(this.options.cookieName) || navigator.language || navigator.userLanguage || this.options.fallback;
+      return jQuery.url("?" + this.options.urlParam) || Cookies.get(this.options.cookieName) || navigator.language || navigator.userLanguage || this.options.fallback;
     };
 
     JQueryLanguage.prototype.setLanguage = function(possibleLanguage) {
@@ -76,7 +76,7 @@
       }
       oldLanguage = this._activeLanguage;
       this._activeLanguage = possibleLanguage;
-      jQuery.cookie(this.options.cookieName, this._activeLanguage);
+      Cookies.set(this.options.cookieName, this._activeLanguage);
       return jQuery('body').trigger('language.change', [
         {
           active: this._activeLanguage,

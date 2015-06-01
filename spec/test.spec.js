@@ -23,12 +23,12 @@
         return expect($.language()).toEqual('de');
       });
       it('recognizes cookie value "en"', function() {
-        $.cookie('lang', 'en');
+        Cookies.set('lang', 'en');
         $.language._autodetectLanguageAndSet();
         return expect($.language()).toEqual('en');
       });
       it('recognizes cookie value "de"', function() {
-        $.cookie('lang', 'de');
+        Cookies.set('lang', 'de');
         $.language._autodetectLanguageAndSet();
         return expect($.language()).toEqual('de');
       });

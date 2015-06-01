@@ -23,12 +23,12 @@ describe 'jquery.language', ->
       expect($.language()).toEqual 'de'
 
     it 'recognizes cookie value "en"', ->
-      $.cookie('lang', 'en')
+      Cookies.set('lang', 'en')
       $.language._autodetectLanguageAndSet()
       expect($.language()).toEqual 'en'
 
     it 'recognizes cookie value "de"', ->
-      $.cookie('lang', 'de')
+      Cookies.set('lang', 'de')
       $.language._autodetectLanguageAndSet()
       expect($.language()).toEqual 'de'
 

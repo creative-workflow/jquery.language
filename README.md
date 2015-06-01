@@ -83,7 +83,7 @@ Normalizes a language string.
 
 ### Dependencies
   * [jquery](https://jquery.com)
-  * [jquery-cookie](https://github.com/carhartl/jquery-cookie)
+  * [js-cookie](https://github.com/js-cookie/js-cookie)
   * [js-url](https://github.com/websanova/js-url)
 
 ### Resources

@@ -25,11 +25,11 @@
     "spec"
   ],
   "devDependencies": {
-    "jasmine-jquery": "~2.1.0"
+    "jasmine-jquery": ">=2.1.0"
   },
   "dependencies": {
-    "jquery": "~2.1.4",
-    "js-url": "~1.8.6",
-    "js-cookie": "~1.5.1"
+    "jquery": ">=1.7.0",
+    "js-url": ">=1.8.6",
+    "js-cookie": ">=1.5.1"
   }
 }
